@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: pylab-sdk
+Version: 1.7.2
+Summary: A development kit that collects simple utilities.
+Home-page: https://github.com/PyLabCo/pylab-sdk
+Author: CHIDA
+Author-email: iam.yeongbin.jo@gmail.com
+License: MIT
+Keywords: python
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Topic :: Software Development :: Testing
+Classifier: Topic :: System :: Installation/Setup
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests
+
+# pylab-sdk
+A development kit that collects simple utilities.
+
+## Installation
+
+```bash
+pip install pylab-sdk
+```
+
+## Example
+```
+import pylab_sdk
+
+
+# Get your public IP
+ip = pylab_sdk.get_ip()
+
+# Get latest user agent of modern browser
+agents = pylab_sdk.get_latest_agents()
+assert agents['macOS'] == pylab_sdk.get_latest_agents('macOS')
+
+# Similar to netcat, webcat running over the http protocol helps you keep a log that you can check anywhere.
+pylab_sdk.wc('hello world', source='discord-bot')
+
+```

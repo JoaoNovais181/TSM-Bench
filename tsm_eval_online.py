@@ -12,7 +12,7 @@ import argparse
 # questdb requieres dataset path to be rebuild
 HOST_DATASET_PATH = "./datasets"
 dataset = "d1"
-n_threads = 10
+n_threads = 1
 
 parser = argparse.ArgumentParser(description='Script to run the online queries')
 
@@ -35,6 +35,10 @@ parser.add_argument('--batch_size', "-bs", nargs="+",
 parser.add_argument('-oc', action='store_false', help='omit cleaning database')
 
 parser.add_argument('--it', nargs="?", type=int, help='n_iterationss', default=100)
+
+parser.add_argument("-t", "--token", type=str, help="token if the target system is influx2.X", default=None)
+
+parser.add_argument("-o", "--org", type=str, help="org if the target system is influx2.X", default=None)
 
 args = parser.parse_args()
 
@@ -94,10 +98,11 @@ try:
                      time_ranges]
 
         ingestor = DataIngestor(system, system_module, dataset, n_rows_s=n_rows, max_runtime=1500, host=host,
-                                n_threads=n_threads, clean_database=clean_database, warmup_time=10)
+                                n_threads=n_threads, clean_database=clean_database, warmup_time=1000)
         try:
             with ingestor:
                 first = True
+                print("Starting queries")
                 for query in queries:
                     query_path_path = f"results/online/{dataset}/{query}"
                     os.makedirs(f"{query_path_path}/runtimes", exist_ok=True)

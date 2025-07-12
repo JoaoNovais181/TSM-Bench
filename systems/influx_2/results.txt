@@ -1,0 +1,17 @@
+InfluxDB launched (PID: 792086)
+Waiting for 'influx ping' to return OK...
+'influx ping' returned OK. Proceeding with setup...
+Configuration file already exists. Skipping copy.
+InfluxDB 2.x installed and configured successfully.
+gps_mpu
+convert the datase tformat (this takes a while and is not counted in the time measuring)
+Bucket gps_mpu already exists. Deleting it...
+ID                      Name    Retention       Shard group duration    Organization ID         Schema Type     Deleted
+5f97bc673a50c132        gps_mpu infinite        168h0m0s                e8b9cc4258799c2d        implicit        true
+ID                      Name    Retention       Shard group duration    Organization ID         Schema Type
+b362c184052531c2        gps_mpu infinite        168h0m0s                e8b9cc4258799c2d        implicit
+start loading
+159.22
+Inserted entries: 1440359 in 159.22 seconds. Avg: 9046.3446 entries/s
+Failed insertions: 0
+DONE

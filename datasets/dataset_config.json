@@ -14,6 +14,14 @@
     ],
     "n_stations": 2000,
     "n_sensors": 100
+  },
+  "gps_mpu": {
+    "time_start_stop": [
+      "2019-12-24T20:19:56",
+      "2019-12-24T20:51:58"
+    ],
+    "n_stations": 300,
+    "n_sensors": 30
   }
 }
 

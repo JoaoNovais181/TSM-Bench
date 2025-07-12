@@ -60,7 +60,7 @@ def ingestion_queries_generator(system,*,n_rows_s, t_n):
     for offset in queries_line_indices:
         with open(file_path, 'r') as file:
             file.seek(offset)
-            if system == "influx" or system == "influxdb":
+            if system == "influx" or system == "influxdb" or system == "influx_2" or system == "influxdb_2":
                 points = file.readline().strip().split(";")
                 yield points
             else:

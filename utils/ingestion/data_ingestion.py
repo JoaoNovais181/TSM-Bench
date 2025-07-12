@@ -81,13 +81,10 @@ class DataIngestor:
                                                                   system=self.system,
                                                                   insertion_query_f=insertion_query_f)
 
-
-
         print("starting insertion")
         for t_n in range(self.n_threads):
-            thread = Thread(target=self.input_data, args=(
+            thread = Thread(target=self.input_data, daemon=True, args=(
                 insertion_queries_generators[t_n],  self.ingestion_results[t_n], self.dataset))
-            thread.setDaemon(True)
             thread.start()
             self.threads.append(thread)
 
@@ -137,7 +134,7 @@ class DataIngestor:
                     n_rows = str(sql).count("(") - 1
                     min_time = sql.split("VALUES")[1].split(",")[0].replace("(","").replace("'","")
                     print("number of rows to insert", n_rows,min_time )
-                elif self.system == "influx": #influx  get a list of points to insert
+                elif self.system == "influx" or self.system == "influx_2": #influx  get a list of points to insert
                     n_rows = len(sql)
                     min_time = sql[0].split(" ")[-1]
                     print("number of rows to insert", n_rows, min_time)
@@ -166,4 +163,5 @@ class DataIngestor:
             raise e
         finally:
             connection.close()
+            print("Finished ingestion thread", ingestion_logger.tn)
 

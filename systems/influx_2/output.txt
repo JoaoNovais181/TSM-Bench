@@ -1,0 +1,5 @@
+Result: _result
+Table: keys: [_start, _stop, _field, _measurement, id_station]
+                   _start:time                      _stop:time           _field:string     _measurement:string       id_station:string                  _value:int
+------------------------------  ------------------------------  ----------------------  ----------------------  ----------------------  --------------------------
+1970-01-01T00:00:00.000000000Z  2025-05-07T14:03:37.578095042Z                     s99                  sensor                     st0                      208232

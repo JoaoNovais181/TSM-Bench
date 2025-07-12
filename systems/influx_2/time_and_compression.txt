@@ -1,0 +1,17 @@
+d1 138.81s GB
+d1 89.68s 126MGB
+d1 72.45s 126MGB
+d1 70.46s 127MGB
+gps_mpu 207.68s 644KGB
+gps_mpu 88.62s 620KGB
+gps_mpu 212.23s 270MGB
+gps_mpu 20.33s 22MGB
+gps_mpu 19.08s 24MGB
+gps_mpu 210.48s 262MGB
+gps_mpu 202.29s 270MGB
+gps_mpu 258.60s 268MGB
+gps_mpu 265.44s 269MGB
+gps_mpu 330.68s 146MGB
+gps_mpu 0.01s 146MGB
+gps_mpu 0.00s 146MGB
+gps_mpu 0.01s 146MGB

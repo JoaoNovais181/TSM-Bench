@@ -1,0 +1,52 @@
+ts=2025-06-24T11:34:55.449313Z lvl=info msg="Welcome to InfluxDB" log_id=0xKRMWrG000 version=v2.7.11 commit=fbf5d4ab5e build_date=2024-12-02T17:48:15Z log_level=info
+ts=2025-06-24T11:34:55.454736Z lvl=info msg="Resources opened" log_id=0xKRMWrG000 service=bolt path=/home/tbag/.influxdbv2/influxd.bolt
+ts=2025-06-24T11:34:55.454946Z lvl=info msg="Resources opened" log_id=0xKRMWrG000 service=sqlite path=/home/tbag/.influxdbv2/influxd.sqlite
+ts=2025-06-24T11:34:55.460127Z lvl=info msg="Checking InfluxDB metadata for prior version." log_id=0xKRMWrG000 bolt_path=/home/tbag/.influxdbv2/influxd.bolt
+ts=2025-06-24T11:34:55.460525Z lvl=info msg="Using data dir" log_id=0xKRMWrG000 service=storage-engine service=store path=/home/tbag/.influxdbv2/engine/data
+ts=2025-06-24T11:34:55.460552Z lvl=info msg="Compaction settings" log_id=0xKRMWrG000 service=storage-engine service=store max_concurrent_compactions=4 throughput_bytes_per_second=50331648 throughput_bytes_per_second_burst=50331648
+ts=2025-06-24T11:34:55.460565Z lvl=info msg="Open store (start)" log_id=0xKRMWrG000 service=storage-engine service=store op_name=tsdb_open op_event=start
+ts=2025-06-24T11:34:55.495355Z lvl=info msg="index opened with 8 partitions" log_id=0xKRMWrG000 service=storage-engine index=tsi
+ts=2025-06-24T11:34:55.496782Z lvl=info msg="index opened with 8 partitions" log_id=0xKRMWrG000 service=storage-engine index=tsi
+ts=2025-06-24T11:34:55.496787Z lvl=info msg="index opened with 8 partitions" log_id=0xKRMWrG000 service=storage-engine index=tsi
+ts=2025-06-24T11:34:55.497337Z lvl=info msg="index opened with 8 partitions" log_id=0xKRMWrG000 service=storage-engine index=tsi
+ts=2025-06-24T11:34:55.498913Z lvl=info msg="index opened with 8 partitions" log_id=0xKRMWrG000 service=storage-engine index=tsi
+ts=2025-06-24T11:34:55.592807Z lvl=info msg="loading changes (start)" log_id=0xKRMWrG000 service=storage-engine engine=tsm1 op_name="field indices" path=/home/tbag/.influxdbv2/engine/data/6ebae7eb86325924/autogen/28/fields.idxl op_event=start
+ts=2025-06-24T11:34:55.592874Z lvl=info msg="loading changes (end)" log_id=0xKRMWrG000 service=storage-engine engine=tsm1 op_name="field indices" path=/home/tbag/.influxdbv2/engine/data/6ebae7eb86325924/autogen/28/fields.idxl op_event=end op_elapsed=0.088ms
+ts=2025-06-24T11:34:55.593436Z lvl=info msg="loading changes (start)" log_id=0xKRMWrG000 service=storage-engine engine=tsm1 op_name="field indices" path=/home/tbag/.influxdbv2/engine/data/6ebae7eb86325924/autogen/29/fields.idxl op_event=start
+ts=2025-06-24T11:34:55.593517Z lvl=info msg="loading changes (end)" log_id=0xKRMWrG000 service=storage-engine engine=tsm1 op_name="field indices" path=/home/tbag/.influxdbv2/engine/data/6ebae7eb86325924/autogen/29/fields.idxl op_event=end op_elapsed=0.093ms
+ts=2025-06-24T11:34:55.594166Z lvl=info msg="loading changes (start)" log_id=0xKRMWrG000 service=storage-engine engine=tsm1 op_name="field indices" path=/home/tbag/.influxdbv2/engine/data/6ebae7eb86325924/autogen/30/fields.idxl op_event=start
+ts=2025-06-24T11:34:55.594233Z lvl=info msg="loading changes (end)" log_id=0xKRMWrG000 service=storage-engine engine=tsm1 op_name="field indices" path=/home/tbag/.influxdbv2/engine/data/6ebae7eb86325924/autogen/30/fields.idxl op_event=end op_elapsed=0.083ms
+ts=2025-06-24T11:34:55.594863Z lvl=info msg="loading changes (start)" log_id=0xKRMWrG000 service=storage-engine engine=tsm1 op_name="field indices" path=/home/tbag/.influxdbv2/engine/data/6ebae7eb86325924/autogen/31/fields.idxl op_event=start
+ts=2025-06-24T11:34:55.594956Z lvl=info msg="loading changes (end)" log_id=0xKRMWrG000 service=storage-engine engine=tsm1 op_name="field indices" path=/home/tbag/.influxdbv2/engine/data/6ebae7eb86325924/autogen/31/fields.idxl op_event=end op_elapsed=0.105ms
+ts=2025-06-24T11:34:55.595309Z lvl=info msg="Opened file" log_id=0xKRMWrG000 service=storage-engine engine=tsm1 service=filestore path=/home/tbag/.influxdbv2/engine/data/6ebae7eb86325924/autogen/29/000000004-000000002.tsm id=0 duration=1.626ms
+ts=2025-06-24T11:34:55.595435Z lvl=info msg="Opened shard" log_id=0xKRMWrG000 service=storage-engine service=store op_name=tsdb_open db_shard_id=29 path=/home/tbag/.influxdbv2/engine/data/6ebae7eb86325924/autogen/29 index_version=tsi1 duration=123.088ms
+ts=2025-06-24T11:34:55.595472Z lvl=info msg="Finished loading shard, current progress 16.7% shards (1 / 6)." log_id=0xKRMWrG000 service=storage-engine
+ts=2025-06-24T11:34:55.598217Z lvl=info msg="loading changes (start)" log_id=0xKRMWrG000 service=storage-engine engine=tsm1 op_name="field indices" path=/home/tbag/.influxdbv2/engine/data/6ebae7eb86325924/autogen/32/fields.idxl op_event=start
+ts=2025-06-24T11:34:55.598295Z lvl=info msg="loading changes (end)" log_id=0xKRMWrG000 service=storage-engine engine=tsm1 op_name="field indices" path=/home/tbag/.influxdbv2/engine/data/6ebae7eb86325924/autogen/32/fields.idxl op_event=end op_elapsed=0.090ms
+ts=2025-06-24T11:34:55.600031Z lvl=info msg="Opened file" log_id=0xKRMWrG000 service=storage-engine engine=tsm1 service=filestore path=/home/tbag/.influxdbv2/engine/data/6ebae7eb86325924/autogen/28/000000002-000000002.tsm id=0 duration=6.938ms
+ts=2025-06-24T11:34:55.600202Z lvl=info msg="Opened shard" log_id=0xKRMWrG000 service=storage-engine service=store op_name=tsdb_open db_shard_id=28 path=/home/tbag/.influxdbv2/engine/data/6ebae7eb86325924/autogen/28 index_version=tsi1 duration=127.822ms
+ts=2025-06-24T11:34:55.600222Z lvl=info msg="Finished loading shard, current progress 33.3% shards (2 / 6)." log_id=0xKRMWrG000 service=storage-engine
+ts=2025-06-24T11:34:55.601474Z lvl=info msg="Opened file" log_id=0xKRMWrG000 service=storage-engine engine=tsm1 service=filestore path=/home/tbag/.influxdbv2/engine/data/6ebae7eb86325924/autogen/32/000000001-000000001.tsm id=0 duration=2.964ms
+ts=2025-06-24T11:34:55.602642Z lvl=info msg="Opened file" log_id=0xKRMWrG000 service=storage-engine engine=tsm1 service=filestore path=/home/tbag/.influxdbv2/engine/data/6ebae7eb86325924/autogen/31/000000004-000000002.tsm id=0 duration=7.449ms
+ts=2025-06-24T11:34:55.607346Z lvl=info msg="Opened shard" log_id=0xKRMWrG000 service=storage-engine service=store op_name=tsdb_open db_shard_id=32 path=/home/tbag/.influxdbv2/engine/data/6ebae7eb86325924/autogen/32 index_version=tsi1 duration=129.082ms
+ts=2025-06-24T11:34:55.607409Z lvl=info msg="Finished loading shard, current progress 50.0% shards (3 / 6)." log_id=0xKRMWrG000 service=storage-engine
+ts=2025-06-24T11:34:55.607725Z lvl=info msg="Opened file" log_id=0xKRMWrG000 service=storage-engine engine=tsm1 service=filestore path=/home/tbag/.influxdbv2/engine/data/6ebae7eb86325924/autogen/30/000000004-000000002.tsm id=0 duration=13.245ms
+ts=2025-06-24T11:34:55.607817Z lvl=info msg="Opened shard" log_id=0xKRMWrG000 service=storage-engine service=store op_name=tsdb_open db_shard_id=30 path=/home/tbag/.influxdbv2/engine/data/6ebae7eb86325924/autogen/30 index_version=tsi1 duration=135.455ms
+ts=2025-06-24T11:34:55.607836Z lvl=info msg="Finished loading shard, current progress 66.7% shards (4 / 6)." log_id=0xKRMWrG000 service=storage-engine
+ts=2025-06-24T11:34:55.608462Z lvl=info msg="Opened shard" log_id=0xKRMWrG000 service=storage-engine service=store op_name=tsdb_open db_shard_id=31 path=/home/tbag/.influxdbv2/engine/data/6ebae7eb86325924/autogen/31 index_version=tsi1 duration=136.065ms
+ts=2025-06-24T11:34:55.608501Z lvl=info msg="Finished loading shard, current progress 83.3% shards (5 / 6)." log_id=0xKRMWrG000 service=storage-engine
+ts=2025-06-24T11:34:55.614659Z lvl=info msg="index opened with 8 partitions" log_id=0xKRMWrG000 service=storage-engine index=tsi
+ts=2025-06-24T11:34:55.616116Z lvl=info msg="loading changes (start)" log_id=0xKRMWrG000 service=storage-engine engine=tsm1 op_name="field indices" path=/home/tbag/.influxdbv2/engine/data/ade7864ac5e4b9f0/autogen/34/fields.idxl op_event=start
+ts=2025-06-24T11:34:55.616188Z lvl=info msg="loading changes (end)" log_id=0xKRMWrG000 service=storage-engine engine=tsm1 op_name="field indices" path=/home/tbag/.influxdbv2/engine/data/ade7864ac5e4b9f0/autogen/34/fields.idxl op_event=end op_elapsed=0.097ms
+ts=2025-06-24T11:34:55.616680Z lvl=info msg="Opened file" log_id=0xKRMWrG000 service=storage-engine engine=tsm1 service=filestore path=/home/tbag/.influxdbv2/engine/data/ade7864ac5e4b9f0/autogen/34/000000001-000000001.tsm id=0 duration=0.292ms
+ts=2025-06-24T11:34:55.616829Z lvl=info msg="Opened shard" log_id=0xKRMWrG000 service=storage-engine service=store op_name=tsdb_open db_shard_id=34 path=/home/tbag/.influxdbv2/engine/data/ade7864ac5e4b9f0/autogen/34 index_version=tsi1 duration=21.075ms
+ts=2025-06-24T11:34:55.616862Z lvl=info msg="Finished loading shard, current progress 100.0% shards (6 / 6)." log_id=0xKRMWrG000 service=storage-engine
+ts=2025-06-24T11:34:55.617155Z lvl=info msg="Open store (end)" log_id=0xKRMWrG000 service=storage-engine service=store op_name=tsdb_open op_event=end op_elapsed=156.590ms
+ts=2025-06-24T11:34:55.617198Z lvl=info msg="Starting retention policy enforcement service" log_id=0xKRMWrG000 service=retention check_interval=30m
+ts=2025-06-24T11:34:55.617216Z lvl=info msg="Starting precreation service" log_id=0xKRMWrG000 service=shard-precreation check_interval=10m advance_period=30m
+ts=2025-06-24T11:34:55.618413Z lvl=info msg="Starting query controller" log_id=0xKRMWrG000 service=storage-reads concurrency_quota=1024 initial_memory_bytes_quota_per_query=9223372036854775807 memory_bytes_quota_per_query=9223372036854775807 max_memory_bytes=0 queue_size=1024
+ts=2025-06-24T11:34:55.620459Z lvl=info msg="Configuring InfluxQL statement executor (zeros indicate unlimited)." log_id=0xKRMWrG000 max_select_point=0 max_select_series=0 max_select_buckets=0
+ts=2025-06-24T11:34:55.628832Z lvl=info msg=Starting log_id=0xKRMWrG000 service=telemetry interval=8h
+ts=2025-06-24T11:34:55.628972Z lvl=error msg="Failed to set up TCP listener" log_id=0xKRMWrG000 service=tcp-listener addr=:8086 error="listen tcp :8086: bind: address already in use"
+Error: listen tcp :8086: bind: address already in use
+See 'influxd -h' for help
