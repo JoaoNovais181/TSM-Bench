@@ -89,7 +89,17 @@ system_module: timescaledb = system_module_map[system]
 if host == "localhost":
     system_module.launch()
 
-query_templates = load_query_templates(system)
+def load_gps_mpu_queries():
+    with open("path/to/queries_file.txt", "r") as file:
+        queries = [line.strip() for line in file.readlines() if line.strip()]
+    return queries
+
+if dataset == "gps_mpu":
+    query_templates = load_gps_mpu_queries()
+else:
+    query_templates = load_query_templates(system)
+
+
 
 try:
     for n_rows in n_rows:

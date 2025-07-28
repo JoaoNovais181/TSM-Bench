@@ -110,7 +110,7 @@ class DataIngestor:
             # Handle or log the exception here if needed
             raise exc_value
             return True  # Suppresses the exception
-        #print(*[ingestion_result.insertions for ingestion_result in self.ingestion_results], sep="\n")
+        print(*[ingestion_result.insertions for ingestion_result in self.ingestion_results], sep="\n")
 
 
 

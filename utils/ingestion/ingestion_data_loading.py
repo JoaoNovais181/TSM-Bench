@@ -1,10 +1,12 @@
 import json
 import random
 import sys
+from time import strptime
 
 import pandas as pd
 import os
 import numpy as np
+from reactivex import start
 
 
 
@@ -29,15 +31,55 @@ def generate_continuing_data(batch_size, dataset, stop_date_pd=None , station_id
     if stop_date_pd is None:
         stop_date_pd = pd.to_datetime(time_stop)
 
-    new_time_stamps = [pd.to_datetime(stop_date_pd) + pd.Timedelta(seconds=10 * i) for i in range(1, batch_size + 1)]
+    if dataset != "gps_mpu":
 
-    station_id = f"st{np.around(np.random.choice(n_stations_total),decimals=4)}" if station_id is None else station_id
-    for i, t_s in enumerate(new_time_stamps):
-        yield {"time_stamp": t_s.strftime('%Y-%m-%dT%H:%M:%S'),
-               "station": station_id,
-               "sensor_values": list(np.random.random(n_sensors_total)),
-               }
+        new_time_stamps = [pd.to_datetime(stop_date_pd) + pd.Timedelta(seconds=10 * i) for i in range(1, batch_size + 1)]
 
+        station_id = f"st{np.around(np.random.choice(n_stations_total),decimals=4)}" if station_id is None else station_id
+        for i, t_s in enumerate(new_time_stamps):
+            yield {"time_stamp": t_s.strftime('%Y-%m-%dT%H:%M:%S'),
+                "station": station_id,
+                "sensor_values": list(np.random.random(n_sensors_total)),
+                }
+    else:
+
+        # "2019-12-24T20:19:56"
+
+        start_date = pd.to_datetime(time_start, format='%Y-%m-%dT%H:%M:%S')
+        start = int(start_date.timestamp()) * 1_000_000_000  # convert to nanoseconds
+        TIME_INTERVAL_NS = 100_000_000  # 100 ms in nanoseconds
+
+        DEVICES = 400
+        ROWS_PER_DEVICE = 144036
+
+        with open(f"datasets/{dataset}/gps_mpu.csv", "r") as f:
+            index = 0
+            for device_id in range(DEVICES):
+                station_id = f"st{device_id}"
+
+                for i in range(ROWS_PER_DEVICE):
+                    if i == 0:
+                        f.readline()
+                    line = f.readline()
+                    if not line:
+                        break
+
+                    columns = line.split(",")
+                    # timestamp_str = columns[0]
+                    # seconds_str, nanos_str = timestamp_str.split(".")
+                    # nanos_str = nanos_str.ljust(9, '0')
+                    # timestamp_ns = int(seconds_str) * 1_000_000_000 + int(nanos_str)        
+                    timestamp_ns = start + index * TIME_INTERVAL_NS
+                    new_columns = []
+                    new_columns.extend(val for i,val in enumerate(columns[1::]) if i != 27)
+                    if i >= batch_size:
+                        break
+                    yield {"time_stamp": pd.to_datetime(timestamp_ns, unit='ns').strftime('%Y-%m-%dT%H:%M:%S'),
+                        "station": station_id,
+                        "sensor_values": new_columns,
+                        }
+                else:
+                    f.seek(0)  # reset file pointer to the beginning
 
 def ingestion_queries_generator(system,*,n_rows_s, t_n):
     """

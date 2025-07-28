@@ -4,9 +4,7 @@ from influxdb import InfluxDBClient
 def generate_insertion_query(time_stamps: list, station_ids: list, sensors_values, dataset):
     #generates string with influx query seperated by ;
     # convert time stmap to influx format
-    print(time_stamps)
     time_stamps = [str(int(time.mktime(time.strptime(t, "%Y-%m-%dT%H:%M:%S")) * 1000)) for t in time_stamps]
-    print(time_stamps)
 
     result = ""
     for t,station, sensor_values in zip(time_stamps, station_ids, sensors_values):

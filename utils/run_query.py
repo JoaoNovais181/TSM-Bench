@@ -57,3 +57,33 @@ def run_query(system_module, query_template,  rangeL, rangeUnit, n_st, n_s, n_it
 
     client.close()
     return round(stats.mean(runtimes), 3), round(stats.stdev(runtimes), 3)
+
+def run_query_gps_mpu(system_module, query_template,  rangeL, rangeUnit, n_st, n_s, n_it, dataset, host="localhost",log=False , warmup=2):
+    # Connect to the system
+    client : Connection = system_module.get_connection(host=host,dataset=dataset)
+
+    runtimes = []
+    full_time = time.time()
+
+    for it in tqdm(range(n_it+warmup)):
+        if it < 1: # 2 warmup iterations
+            continue
+
+        if log and it==0:
+            print("query")
+            print(query_template)
+
+        start = time.time()
+        result = client.execute(query_template)
+        
+        diff = (time.time() - start) * 1000
+        runtimes.append(diff)
+
+        if log:
+            print(result)
+
+        if time.time() - full_time > 200 and it > 5:
+            break
+
+    client.close()
+    return round(stats.mean(runtimes), 3), round(stats.stdev(runtimes), 3)

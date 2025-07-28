@@ -57,8 +57,43 @@ def get_randomized_inputs(dataset, *, n_st, n_s, n_it, rangeL, seed=1):
     n_stations_total = dataset_config["n_stations"]
     time_start, time_stop = dataset_config["time_start_stop"]
 
-    random_stations = [['st' + str(z) for z in random.sample(range(n_stations_total), n_st)] for i in range(n_it)]
-    random_sensors = [['s' + str(z) for z in random.sample(range(n_sensors_total), n_s)] for i in range(n_it)]
+    random_stations = [[((dataset != "gps_mpu" and 'st') or "device_") + str(z) for z in random.sample(range(n_stations_total), n_st)] for i in range(n_it)]
+    random_sensors = []
+    if dataset != "gps_mpu":
+        random_sensors = [['s' + str(z) for z in random.sample(range(n_sensors_total), n_s)] for i in range(n_it)]
+    else:
+        random_sensors = [ 
+            "acc_x_dashboard",
+            "acc_y_dashboard",
+            "acc_z_dashboard",
+            "acc_x_above_suspension",
+            "acc_y_above_suspension",
+            "acc_z_above_suspension",
+            "acc_x_below_suspension",
+            "acc_y_below_suspension",
+            "acc_z_below_suspension",
+            "gyro_x_dashboard",
+            "gyro_y_dashboard",
+            "gyro_z_dashboard",
+            "gyro_x_above_suspension",
+            "gyro_y_above_suspension",
+            "gyro_z_above_suspension",
+            "gyro_x_below_suspension",
+            "gyro_y_below_suspension",
+            "gyro_z_below_suspension",
+            "mag_x_dashboard",
+            "mag_y_dashboard",
+            "mag_z_dashboard",
+            "mag_x_above_suspension",
+            "mag_y_above_suspension",
+            "mag_z_above_suspension",
+            "temp_dashboard",
+            "temp_above_suspension",
+            "temp_below_suspension",
+            "latitude",
+            "longitude",
+            "speed"
+        ]
 
     set_date = [random.random() for i in range(500)]
 
