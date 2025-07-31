@@ -11,8 +11,8 @@ import argparse
 
 # questdb requieres dataset path to be rebuild
 HOST_DATASET_PATH = "./datasets"
-dataset = "d1"
-n_threads = 1
+dataset = "gps_mpu"
+n_threads = 8
 
 parser = argparse.ArgumentParser(description='Script to run the online queries')
 
@@ -82,7 +82,7 @@ if system == "questdb":
 if system == "monetdb":
     n_threads = 1
 
-n_rows = [int(batch_size / 100 / n_threads) for batch_size in batch_sizes]
+n_rows = [int(batch_size / 30 / n_threads) for batch_size in batch_sizes]
 
 system_module: timescaledb = system_module_map[system]
 
@@ -94,10 +94,11 @@ def load_gps_mpu_queries():
         queries = [line.strip() for line in file.readlines() if line.strip()]
     return queries
 
-if dataset == "gps_mpu":
-    query_templates = load_gps_mpu_queries()
-else:
-    query_templates = load_query_templates(system)
+# if dataset == "gps_mpu":
+#     query_templates = load_gps_mpu_queries()
+# else:
+#     query_templates = load_query_templates(system)
+query_templates = load_query_templates(system)
 
 
 
@@ -113,33 +114,33 @@ try:
             with ingestor:
                 first = True
                 print("Starting queries")
-                for query in queries:
-                    query_path_path = f"results/online/{dataset}/{query}"
-                    os.makedirs(f"{query_path_path}/runtimes", exist_ok=True)
-                    output_file = f"{query_path_path}/runtimes/{system}.txt"
-                    query_template = query_templates[int(query[1:]) - 1]
-                    for n_s, n_st, time_range in scenarios:
-                        if query.lower() == "empty":
-                            print("skipping empty query")
-                            continue
-                        print("running query:", query, "with", n_s, "sensors", n_st, "stations", time_range,
-                              "time range")
+                # for query in queries:
+                #     query_path_path = f"results/online/{dataset}/{query}"
+                #     os.makedirs(f"{query_path_path}/runtimes", exist_ok=True)
+                #     output_file = f"{query_path_path}/runtimes/{system}.txt"
+                #     query_template = query_templates[int(query[1:]) - 1]
+                #     for n_s, n_st, time_range in scenarios:
+                #         if query.lower() == "empty":
+                #             print("skipping empty query")
+                #             continue
+                #         print("running query:", query, "with", n_s, "sensors", n_st, "stations", time_range,
+                #               "time range")
 
-                        query_template = query_template.replace("<db>", dataset)
-                        try:
-                            time, var = run_query(system_module, query_template, rangeUnit=time_range, rangeL=1,
-                                                  n_s=n_s,
-                                                  n_it=n_iter,
-                                                  n_st=n_st,
-                                                  dataset=dataset, host=host)
-                            with open(output_file, "a") as file:
-                                line = f"{time} , {var}  , {query} , {n_s} , {n_st} , {time_range} , {n_rows * n_threads * 100}\n"
-                                file.write(line)
-                        except Exception as E:
-                            with open(log_file, "a") as file:
-                                line = f"{E}\n"
-                                file.write(line)
-                            print(E)
+                #         query_template = query_template.replace("<db>", dataset)
+                #         try:
+                #             time, var = run_query(system_module, query_template, rangeUnit=time_range, rangeL=1,
+                #                                   n_s=n_s,
+                #                                   n_it=n_iter,
+                #                                   n_st=n_st,
+                #                                   dataset=dataset, host=host)
+                #             with open(output_file, "a") as file:
+                #                 line = f"{time} , {var}  , {query} , {n_s} , {n_st} , {time_range} , {n_rows * n_threads * 100}\n"
+                #                 file.write(line)
+                #         except Exception as E:
+                #             with open(log_file, "a") as file:
+                #                 line = f"{E}\n"
+                #                 file.write(line)
+                #             print(E)
                 #plot_query_directory(query_path_path)
         except Exception as E:
             with open(log_file, "a") as file:

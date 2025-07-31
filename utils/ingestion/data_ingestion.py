@@ -35,7 +35,7 @@ class IngestionResult:
 
 class DataIngestor:
     def __init__(self, system: str, system_module, dataset: str, *, n_rows_s, max_runtime, host, n_threads,
-                 warmup_time=None, clean_database=True):
+                 warmup_time=None, clean_database=False):
 
         self.diff_threshold = 1 # we try to insert once every second
         self.n_rows_s = n_rows_s
