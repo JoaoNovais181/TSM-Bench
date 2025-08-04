@@ -50,7 +50,6 @@ def generate_continuing_data(batch_size, dataset, stop_date_pd=None , station_id
         TIME_INTERVAL_NS = 100_000_000  # 100 ms in nanoseconds
 
         DEVICES = 400
-        ROWS_PER_DEVICE = 144036
 
         with open(f"datasets/gps_mpu.csv", "r") as f:
 
@@ -63,11 +62,11 @@ def generate_continuing_data(batch_size, dataset, stop_date_pd=None , station_id
                         device_id += 1
 
             index = 0
+            i = 0
             while device_id < DEVICES:
                 station_id = f"st{device_id}"
 
-                for i in range(ROWS_PER_DEVICE):
-                    line = f.readline()
+                while line := f.readline():
                     if not line:
                         break
 
@@ -78,11 +77,12 @@ def generate_continuing_data(batch_size, dataset, stop_date_pd=None , station_id
                     # seconds_str, nanos_str = timestamp_str.split(".")
                     # nanos_str = nanos_str.ljust(9, '0')
                     # timestamp_ns = int(seconds_str) * 1_000_000_000 + int(nanos_str)
-                    timestamp_ns = start + index * ROWS_PER_DEVICE + i * TIME_INTERVAL_NS
+                    timestamp_ns = start + index * 144036 + i * TIME_INTERVAL_NS
                     new_columns = []
                     new_columns.extend(val for i,val in enumerate(columns[1::]) if i != 27)
                     if i >= batch_size:
                         break
+                    i += 1
                     yield {"time_stamp": pd.to_datetime(timestamp_ns, unit='ns').strftime('%Y-%m-%dT%H:%M:%S'),
                         "station": station_id,
                         "sensor_values": new_columns,
