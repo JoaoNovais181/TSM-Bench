@@ -129,6 +129,7 @@ class DataIngestor:
         connection: Connection = self.system_module.get_connection(host=self.host, dataset=self.dataset)
 
         try:
+            cnt = 0
             for sql in insertion_queries:
                 if isinstance(sql, str):
                     n_rows = str(sql).count("(") - 1
@@ -149,6 +150,7 @@ class DataIngestor:
                 start = time.time()
                 connection.write(sql) # ingestion is done here
                 diff = time.time() - start
+                cnt += 1
                 ingestion_logger.add_times(start, diff)
                 if diff <= self.diff_threshold:
                     assert diff > 0
@@ -162,6 +164,7 @@ class DataIngestor:
             print("ingestion failed")
             raise e
         finally:
+            print("Inserted ", cnt, "operations in thread", ingestion_logger.tn)
             connection.close()
             print("Finished ingestion thread", ingestion_logger.tn)
 
