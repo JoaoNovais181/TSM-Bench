@@ -63,7 +63,6 @@ def generate_continuing_data(batch_size, dataset, stop_date_pd=None , station_id
 
             index = 0
             i = 0
-            cnt = 0
             while device_id < DEVICES:
                 station_id = f"st{device_id}"
 
@@ -88,9 +87,6 @@ def generate_continuing_data(batch_size, dataset, stop_date_pd=None , station_id
                         "station": station_id,
                         "sensor_values": new_columns,
                         }
-                    cnt += 1
-                    if cnt % 100 == 0:
-                        print(f"Generated {cnt} rows")
                 else:
                     f.seek(0)  # reset file pointer to the beginning
                 index += 1
