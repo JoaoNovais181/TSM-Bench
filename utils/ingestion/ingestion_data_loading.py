@@ -63,6 +63,7 @@ def generate_continuing_data(batch_size, dataset, stop_date_pd=None , station_id
 
             index = 0
             i = 0
+            cnt = 0
             while device_id < DEVICES:
                 station_id = f"st{device_id}"
 
@@ -87,10 +88,12 @@ def generate_continuing_data(batch_size, dataset, stop_date_pd=None , station_id
                         "station": station_id,
                         "sensor_values": new_columns,
                         }
+                    cnt += 1
                 else:
                     f.seek(0)  # reset file pointer to the beginning
                 index += 1
                 device_id += 1
+            print(f"Generated {cnt} samples")
 
 def ingestion_queries_generator(system,*,n_rows_s, t_n):
     """
@@ -158,7 +161,7 @@ def generate_ingestion_queries(*, n_threads, n_rows_s, max_runtime, dataset, sys
             if t_n == 1:
                 station_id = f"st{random.randint(0,9)}"
 
-            data_generator = generate_continuing_data(n_rows_s * max_runtime, dataset ,station_id=station_id, last_idx=t_n - 1)
+            data_generator = generate_continuing_data( n_rows_s* max_runtime, dataset ,station_id=station_id, last_idx=t_n - 1)
             for i in range(max_runtime):
                 time_stamps = []
                 stations = []
